@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 09. 11:28
--- Kiszolgáló verziója: 10.4.6-MariaDB
--- PHP verzió: 7.3.8
+-- Létrehozás ideje: 2023. Ápr 02. 21:31
+-- Kiszolgáló verziója: 10.4.25-MariaDB
+-- PHP verzió: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,6 +35,13 @@ CREATE TABLE `position` (
   `wage` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `position`
+--
+
+INSERT INTO `position` (`ID`, `name`, `wage`) VALUES
+(1, 'Takarító', 990);
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +56,13 @@ CREATE TABLE `shifts` (
   `day` varchar(10) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `shifts`
+--
+
+INSERT INTO `shifts` (`ID`, `workerID`, `starttime`, `endtime`, `day`) VALUES
+(2, 1, '06:15:00', '15:30:00', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -59,9 +72,15 @@ CREATE TABLE `shifts` (
 CREATE TABLE `workers` (
   `ID` int(11) NOT NULL,
   `name` varchar(64) COLLATE utf8_hungarian_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8_hungarian_ci NOT NULL,
   `positionID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `workers`
+--
+
+INSERT INTO `workers` (`ID`, `name`, `positionID`) VALUES
+(1, 'Kovács János', 1);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -95,19 +114,19 @@ ALTER TABLE `workers`
 -- AUTO_INCREMENT a táblához `position`
 --
 ALTER TABLE `position`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT a táblához `workers`
 --
 ALTER TABLE `workers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Megkötések a kiírt táblákhoz
